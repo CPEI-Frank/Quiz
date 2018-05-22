@@ -1,0 +1,22 @@
+<div *ngIf="tests[0]" class="container">
+  <h2 class="main-content-header">Список тестів</h2>
+  <div class="quiz-box">
+    <div class="quiz-item" *ngFor="let test of tests | filter: term" (click)="passTestNotify(test)">
+      <h2 class="quiz-title">{{test.title}}</h2>
+      <h4 class="quiz-description">{{test.description}}</h4>
+      <span class="quiz-passing-time">{{test.passingTime}} хв.</span>
+      <div class="btn-group dropdown-block"
+           (click)="onStopPropagation($event)"
+           ngbDropdown role="group">
+        <span ngbDropdownToggle></span>
+        <div class="dropdown-menu" ngbDropdownMenu>
+          <button class="dropdown-item"
+                  [routerLink]="['../quiz-editor', test.testId]">Редагувати тест</button>
+          <button class="dropdown-item" (click)="editQuestion(test.testId)">Редагувати питання</button>
+          <button class="dropdown-item" (click)="deleteTest(test)">Видалити</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>

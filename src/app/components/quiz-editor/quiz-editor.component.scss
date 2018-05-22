@@ -1,0 +1,54 @@
+.quiz-wrapper {
+  .header {
+    background-color: #666666;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 3px 3px rgba(255,255,255,0.5);
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .form-group {
+    margin-bottom: 8px;
+
+    label {
+      margin-bottom: 0;
+    }
+  }
+
+  #quiz-passing-time {
+    width: 128px;
+  }
+
+  .alert-error {
+    color: red;
+  }
+}
+
+[type=number] {
+  width: 128px;
+}
+*:focus, *:active {
+  outline: none;
+}
+
+.form-control:focus, .form-control:active {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid #ced4da;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input.ng-touched.ng-invalid {
+  border: 1px solid red;
+}
+
+input.ng-touched.ng-valid {
+  border: 1px solid green;
+}

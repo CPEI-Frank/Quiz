@@ -1,0 +1,66 @@
+<div class="container">
+  <div *ngIf="!isFormSubmitted || passedQuizId" class="quiz-wrapper">
+    <h2 class="header">Редактор тесту</h2>
+    <form [formGroup]="quizForm" novalidate>
+      <div class="form-group">
+        <label class="center-block" for="quiz-title">Назва:</label>
+        <input class="form-control" formControlName="title" id="quiz-title" [(ngModel)]="title">
+        <div *ngIf="(getFormTitle.dirty || getFormTitle.touched) && getFormTitle.errors?.required" class="alert-error">
+          {{ validationMessages.title.required }}
+        </div>
+        <div *ngIf="getFormTitle.errors?.minlength" class="alert-error">
+          {{ validationMessages.title.minlength }}
+        </div>
+        <div *ngIf="getFormTitle.errors?.maxlength" class="alert-error">
+          {{ validationMessages.title.maxlength }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="center-block" for="quiz-description">Опис:</label>
+        <input class="form-control" formControlName="description" id="quiz-description" [(ngModel)]="description">
+        <div *ngIf="(getFormDescription.dirty || getFormDescription.touched) && getFormDescription.errors?.required" class="alert-error">
+          {{ validationMessages.description.required }}
+        </div>
+        <div *ngIf="getFormDescription.errors?.minlength" class="alert-error">
+          {{ validationMessages.description.minlength }}
+        </div>
+        <div *ngIf="getFormDescription.errors?.maxlength" class="alert-error">
+          {{ validationMessages.description.maxlength }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="center-block" for="quiz-passing-time">Час на проходження (хв):</label>
+        <input class="form-control" formControlName="passingTime" id="quiz-passing-time" [(ngModel)]="passingTime">
+        <div *ngIf="(getFormPassingTime.dirty || getFormPassingTime.touched) && getFormPassingTime.errors?.required" class="alert-error">
+          {{ validationMessages.passingTime.required }}
+        </div>
+        <div *ngIf="getFormPassingTime.errors?.min" class="alert-error">
+          {{ validationMessages.passingTime.min }}
+        </div>
+        <div *ngIf="getFormPassingTime.errors?.max" class="alert-error">
+          {{ validationMessages.passingTime.max }}
+        </div>
+        <div *ngIf="getFormPassingTime.errors?.pattern" class="alert-error">
+          {{ validationMessages.passingTime.pattern }}
+        </div>
+      </div>
+      <div class="control-btn-group">
+        <button *ngIf="!passedQuizId"
+                type="submit"
+                class="btn btn-primary"
+                (click)="createQuiz($event)"
+                [disabled]="quizForm.invalid">Створити тест</button>
+        <button *ngIf="passedQuizId"
+                type="submit"
+                class="btn btn-primary"
+                (click)="editQuiz($event)"
+                [disabled]="quizForm.invalid">Редагувати тест</button>
+        <button type="button" class="btn btn-danger" routerLink="../tests-list">Скасувати</button>
+      </div>
+    </form>
+  </div>
+</div>
+<app-question-filler *ngIf="isFormSubmitted && !passedQuizId"
+                     [passedQuizId]="passedQuizId"
+                     [createdQuizId]="createdQuizId"></app-question-filler>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>

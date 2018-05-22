@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="quiz-wrapper">
+    <div *ngIf="currentQuestion" class="quiz">
+      <h1 class="question-count">Питання {{step+1}} з {{questions.length}}</h1>
+      <h3 class="question-title">{{currentQuestion.description}}</h3>
+      <div class="choices">
+        <div class="form-group" *ngFor="let answer of currentQuestion.answerList; let i = index">
+          <input type="radio"
+                 name="answer"
+                 [value]="answer.answerId"
+                 [checked]="i === 0"
+                 id="answer{{i}}"
+                 [(ngModel)]="selectedAnswerId">
+          <label class="answer-label" for="answer{{i}}">{{answer.description}}</label>
+        </div>
+      </div>
+      <p class="next-btn"><button class="btn btn-dark" (click)="nextQuestion($event)">Наступне питання</button></p>
+    </div>
+    <div *ngIf="score || score === 0" class="results" [style.color]="score >= 50 ? 'green' : 'red'">
+      <h3>{{score >= 50 ? 'Тест пройдено!' : 'Тест не пройдено!'}}</h3>
+      <h3>Кількість набраних балів: {{score}} з 100</h3>
+      <p><button class="btn btn-dark" routerLink="../../tests-list">На головну</button></p>
+    </div>
+  </div>
+</div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>

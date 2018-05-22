@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/tests-list">Тестіки</a>
+    <button class="navbar-toggler"
+            type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <form class="form-inline">
+        <div class="input-group">
+          <input class="top-input"
+                 type="text"
+                 placeholder="Пошук тесту"
+                 [(ngModel)]="term"
+                 (ngModelChange)="onSearchChanges(term)"
+                 [ngModelOptions]="{standalone: true}">
+        </div>
+      </form>
+      <a class="btn btn-sm btn-info ml-auto" routerLink="/quiz-creator">Створити тест</a>
+      <div class="auth-block ml-auto">
+        <a class="btn btn-sm auth-btn" routerLink="/log-in">Ввійти {{message}}</a>
+        <a class="btn btn-sm auth-btn" routerLink="/sign-up">Реєстрація</a>
+      </div>
+    </div>
+  </div>
+</nav>

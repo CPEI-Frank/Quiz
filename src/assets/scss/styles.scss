@@ -1,0 +1,12 @@
+@import 'variables';
+@import 'mixins';
+
+html {
+  min-height: 100vh;
+  position: relative;
+}
+
+body {
+  background-color: $body-bg-color;
+  margin-bottom: $head-foot-height;
+}
