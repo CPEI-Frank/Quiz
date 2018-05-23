@@ -1,0 +1,6 @@
+To start the server:
+1. Install Java 8 and JDK 8
+2. Go to the console in the folder with the file Test9.jar
+3. Run our file with the command: java -jar Test9.jar
+
+If there are errors, try installing JDK 10
